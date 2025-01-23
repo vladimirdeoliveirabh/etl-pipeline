@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    ports:
+      - "3306:3306"  # Exponha a porta 3306 para acesso externo
+    environment:
+      MYSQL_ROOT_PASSWORD: admin  # Substitua pela senha desejada
+      MYSQL_DATABASE: pipeline_db         # Nome do banco de dados padrão
+      MYSQL_USER: admin                 # Substitua pelo nome do usuário desejado
+      MYSQL_PASSWORD: admin         # Substitua pela senha do usuário
+    volumes:
+      - db_data:/var/lib/mysql            # Persistência dos dados do banco de dados
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
